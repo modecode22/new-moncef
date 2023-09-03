@@ -10,8 +10,10 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@alpinejs/collapse": "^3.13.0",
     "@astrojs/mdx": "^1.0.0",
     "@astrojs/tailwind": "^5.0.0",
+    "alpinejs": "^3.13.0",
     "astro": "^3.0.7",
     "tailwindcss": "^3.0.24"
   }
