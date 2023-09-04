@@ -1,0 +1,32 @@
+---
+import Layout from './Layout.astro';
+type Props = {
+    title: string
+    author:string
+    date: string
+}
+const { title,author, date } = Astro.props;
+---
+
+<Layout title={title} description='dsqlkfjqsd'  >
+
+<main>
+    <h1>
+        {title}
+    </h1>
+      <h1>
+        {author}
+    </h1>
+      <h1>
+        {date}
+    </h1>
+
+<div>what is that</div>
+
+      <slot />
+
+
+
+
+
+</main></Layout>

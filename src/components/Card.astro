@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
 
 type Props = {
     title:string
@@ -10,17 +11,10 @@ type Props = {
 }
 const { author, description,img,title,date } = Astro.props;
 ---
-<style>
-    #card{
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        background-image: url();
-    }
-</style>
 
-<section id="card" class="border w-[320px] relative shadow-sm aspect-[7/10] rounded-lg">
-haha
-<!-- <Image width={320} height={740}  class="absolute object-cover inset-0"  src={"https://uploadthing.com/f/44eb7e98-1c75-494c-a14c-b5d479cac657_pexels-alex-conchillos-3648850.jpg"} alt="A bird sitting on a nest of eggs."/> -->
 
-</section>
+    
+    <section id="card" class={` overflow-hidden w-[320px] bg-white shadow-sm aspect-[7/10] `}>
+        <Image width={320} height={200}  class="rounded-none"  src={img} alt="A bird sitting on a nest of eggs."/>
+        
+    </section>

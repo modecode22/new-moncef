@@ -2,11 +2,26 @@
 import Card from "../components/Card.astro";
 import Header from "../components/Header.astro";
 import Layout from "../layouts/Layout.astro";
+import { getCollection, getEntry } from 'astro:content';
+
+// Get all entries from a collection.
+// Requires the name of the collection as an argument.
+// Example: retrieve `src/content/blog/**`
+const allBlogPosts = await getCollection('blogs');
+console.log(allBlogPosts);
+const { Content, headings } = await allBlogPosts[0].render();
+
+// Get a single entry from a collection.
+// Requires the name of the collection and either
+// the entry `slug` (content collections) or `id` (data collections)
+// Example: retrieve `src/content/authors/grace-hopper.json`
 ---
 
 
 
+<Layout description="Moncef blog" title="Moncef Blog" transition:animate={"slide"}>
+<Card author="" title="fsdf"  description="" img="https://uploadthing.com/f/1d44f1a9-3083-4a59-860b-d421161d5c4c_rainbow-vortex.svg" date=""   /> 
 
-<Layout description="" title="Welcome to Astro." transition:animate={"slide"}>
-<Card author="" title="fsdf"  description="" img="" date=""   /> 
+<Content />
+
 </Layout>
