@@ -1,4 +1,5 @@
 ---
+import Card from "../components/Card.astro";
 import Header from "../components/Header.astro";
 import Layout from "../layouts/Layout.astro";
 ---
@@ -6,10 +7,6 @@ import Layout from "../layouts/Layout.astro";
 
 
 
-<Layout description="" title="Welcome to Astro.">
-
-	<main class="text-5xl  flex-col bg-light-50 dark:bg-stone-950 flex justify-center items-center h-screen w-full text-stone-50">
-	<h1>this is the secend page </h1>
-<p>Read more <a href="/">about</a> Astro!</p>
-	</main>
+<Layout description="" title="Welcome to Astro." transition:animate={"slide"}>
+<Card author="" title="fsdf"  description="" img="" date=""   /> 
 </Layout>

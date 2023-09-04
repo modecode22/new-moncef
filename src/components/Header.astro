@@ -25,16 +25,16 @@ const links = [
 
 <header
   x-data="{ open: false }"
-  class="transition text-light-950 dark:text-dark-50"
-  :class="{ 'bg-primary-500  dark:bg-primary-950': open, 'bg-light-50 dark:bg-dark-900': !(open) }"
+  class=" sticky transition-all text-light-950 dark:text-dark-50"
+  :class="{ 'bg-stone-50  dark:bg-dark-950': open, 'bg-light-50 dark:bg-dark-900': !(open) }"
 >
   <div
-    class="mx-auto flex max-w-2xl items-center justify-between px-4 py-4 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8"
+    class="mx-auto flex max-w-2xl items-baseline justify-between px-4 py-4 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8"
   >
     <!-- Brand logo -->
-    <div class="text-4xl font-bold text-light-950 dark:text-dark-50">
-      Moncef
-    </div>
+    <strong class="text-4xl font-bold text-primary-500 dark:text-primary-500 ">
+      MONCEF
+    </strong>
 
     <!-- Actions -->
     <div class="-mr-2 flex items-center space-x-2 sm:space-x-3">
@@ -46,6 +46,7 @@ const links = [
         @click="$store.theme.toggle()"
       >
         <span class="sr-only">Toggle theme mode</span>
+
         <svg
           x-cloak
           class="h-6 w-6"
@@ -113,6 +114,37 @@ const links = [
     </div>
   </div>
 
+
+  <style>
+.des {
+  position: relative;
+  overflow: hidden;
+}
+
+.des::before {
+  content: "";
+  position: absolute;
+  top: 0; /* Adjust these values */
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url("des.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  z-index: -1;
+  animation: spin 10s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+  </style>
   <!-- Menu content -->
   <div
     class="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8"
@@ -124,31 +156,29 @@ const links = [
   >
     <div class="grid grid-cols-1 gap-16 pb-24 pt-6 lg:grid-cols-2 lg:pt-12">
       <div
-        class="bg-primary-500/10 dark:bg-primary-400/10 hidden items-center justify-center rounded-3xl px-6 py-8 lg:flex"
+        class="des   hidden items-center justify-center rounded-3xl px-6 py-8 lg:flex"
       >
         <p
-          class="text-primary-950/70 dark:text-primary-200/70 max-w-sm text-xl italic leading-loose"
+          class="text-dark-500 bg-primary-900/10 p-6 rounded-xl backdrop-blur-2xl dark:text-primary-50  max-w-sm text-xl italic leading-loose"
         >
-          <span class="font-medium">Stone</span> is a premium Astro theme specially designed for
-          Business, Marketing, SaaS and Startup websites.
+          <span class="font-medium">Moncef</span> is a proficient full-stack developer who loves working with TypeScript, reading books, and engaging with startups. If you're interested in collaborating with him, <a href="/contact" class="text-primary-500 hover:text-primary-600 ">click here</a>.
         </p>
-      </div>
-
+      </div> 
       <!-- Navigation -->
       <nav class="divide-primary-900/10 dark:divide-primary-300/10 flex flex-col gap-1 divide-y">
         {
           links.map((link) => (
             <a
               href={link.href}
-              class="text-primary-950 dark:text-primary-200 group inline-flex py-6 text-3xl font-medium tracking-tight transition focus-visible:outline-none sm:py-8 sm:text-4xl"
+              class="text-primary-950 hover:bg-light-100 dark:hover:bg-dark-900 rounded-xl p-2 px-6 dark:text-primary-200 group inline-flex py-6 text-3xl font-medium tracking-tight  focus-visible:outline-none sm:py-8 sm:text-4xl"
             >
               <div class="group-focus-visible:outline-primary-950 dark:group-focus-visible:outline-primary-200 flex flex-1 items-center justify-between rounded-3xl group-focus-visible:outline group-focus-visible:outline-2 group-focus-visible:outline-offset-2">
                 <div class="flex items-center gap-6">
                   <span class="text-xs">{link.ref}</span>
-                  <span class="group-hover:underline">{link.name}</span>
+                  <span class="">{link.name}</span>
                 </div>
                 <svg
-                  class="text-primary-600 dark:text-primary-400 h-6 w-6 sm:h-8 sm:w-8"
+                  class="text-primary-600 group-hover:translate-x-2 transition-all duration-75 group-hover:-translate-y-2 dark:text-primary-400 h-6 w-6 sm:h-8 sm:w-8"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
