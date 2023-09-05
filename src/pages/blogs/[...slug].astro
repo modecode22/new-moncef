@@ -44,7 +44,7 @@ console.log(entry.data.img);
 
 <BlogLayout title={entry.data.title} description={entry.data.description} >
   <h1>{entry.data.title}</h1>
-  <img src={entry.data.img} alt="this is an image ">
+  <img src={entry.data.img} class="aspect-video" alt="this is an image ">
   <h5>{remarkPluginFrontmatter.minutesRead}</h5>
   <Content />
 </BlogLayout>
