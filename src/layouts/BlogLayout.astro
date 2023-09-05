@@ -2,31 +2,16 @@
 import Layout from './Layout.astro';
 type Props = {
     title: string
-    author:string
-    date: string
+    description:string
 }
-const { title,author, date } = Astro.props;
+const { title,description  } = Astro.props;
 ---
 
-<Layout title={title} description='dsqlkfjqsd'  >
+<Layout title={title} description={description}  >
+    <main class="w-full  flex justify-center items-center">
+        <main class="max-w-3xl">
 
-<main>
-    <h1>
-        {title}
-    </h1>
-      <h1>
-        {author}
-    </h1>
-      <h1>
-        {date}
-    </h1>
-
-<div>what is that</div>
-
-      <slot />
-
-
-
-
-
-</main></Layout>
+            <slot />
+        </main>
+        </main> 
+</Layout>

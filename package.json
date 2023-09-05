@@ -15,6 +15,8 @@
     "@astrojs/tailwind": "^5.0.0",
     "alpinejs": "^3.13.0",
     "astro": "^3.0.7",
+    "mdast-util-to-string": "^4.0.0",
+    "reading-time": "^1.5.0",
     "tailwindcss": "^3.0.24"
   },
   "devDependencies": {
