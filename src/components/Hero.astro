@@ -1,9 +1,38 @@
 ---
+import Skill from "./Skill.astro";
+ const images = [
+    {filename:"typescript.svg",name:"typescript"},
+    {filename:"nextjs.svg",name:"next js"},
+    {filename:"react.svg",name:"react"},
+    {filename:"astrojs.svg",name:"astro js"},
+    {filename:"tauri.svg",name:"tauri"},
+    {filename:"electronjs.svg",name:"electron js"},
+    {filename:"tailwindcss.svg",name:"tailwind css"},
+    {filename:"reactrouter.svg",name:"react router"},
+    {filename:"reduxtoolkit.svg",name:"redux toolkit"},
+    {filename:"reactquery.svg",name:"react query"},
+    {filename:"swr.svg",name:"swr"},
+    {filename:"prisma.svg",name:"prisma"},
+    {filename:"zodlogo.svg",name:"zod"},
+    {filename:"nextauth.webp",name:"next auth"},
+    {filename:"auth0.svg",name:"auth0"},
+    {filename:"nodejs.svg",name:"node js"},
+    {filename:"deno.svg",name:"deno"},
+    {filename:"jwt.svg",name:"jwt"},
+    {filename:"expressjs.svg",name:"express js"},
+    {filename:"nestjs.svg",name:"nest js"},
+    {filename:"sanity.svg",name:"sanity"},
+    {filename:"supabase.svg",name:"supabase"},
+    {filename:"firebase.svg",name:"firebase"},
+    {filename:"mongodb.svg",name:"mongodb"},
+    {filename:"postgressql.svg",name:"postgressql"},
+    {filename:"sqlite.svg",name:"sqlite"},
+  ];
 
 ---
 
 
-<section class="py-16 w-full flex flex-col relative">
+<main class="py-16 w-full flex flex-col relative">
     <a href="/blog" class="absolute decoration-transparent bottom-0  right-0 p-2 px-6 rounded-lg dark:bg-dark-950 bg-white transition-all shadow-sm hover:shadow-md hover:shadow-white shadow-white dark:shadow-dark-950">
         Want to read my Blogs ?
     </a>
@@ -19,10 +48,12 @@
         </h2>
     </main>
     <section class="flex flex-col">
-       
         <h2  class="sm:text-5xl text-4xl">
          Skilled in
         </h2>
-        
+        <section class="flex mt-2 flex-wrap gap-1">
+
+            {images.map(img=> <Skill img={img.filename} name={img.name}/> )}
+        </section>
     </section>
-</section>
+</main>
