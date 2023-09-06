@@ -30,24 +30,59 @@ import Skill from "./Skill.astro";
   ];
 
 ---
+  <style>
 
+.back {
+  z-index: -20;
+  animation: spin 33s linear infinite;
+}
 
-<main class="py-16 w-full flex flex-col relative">
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+  </style>
+
+<div class="fixed inset-0 backdrop-blur-xl h-screen w-full  -z-10 flex justify-center items-center">
+</div>
+<div class="fixed inset-0  h-screen w-full  -z-20 flex justify-center items-center">
+    <img src="./des.svg" class=" back  fixed  " alt="">
+</div>
+
+<main class="py-16 w-full    flex flex-col justify-center items-center relative">
     <a href="/blog" class="absolute decoration-transparent bottom-0  right-0 p-2 px-6 rounded-lg dark:bg-dark-950 bg-white transition-all shadow-sm hover:shadow-md hover:shadow-white shadow-white dark:shadow-dark-950">
         Want to read my Blogs ?
     </a>
+    <main class=" flex flex-col w-full items-center dark:text-primary-50 text-dark-900">
 
-    <main class="flex flex-col">
-
-        <h1 class="sm:text-9xl text-7xl">
+        <h1 class="sm:text-9xl text-7xl font-bold">
          I'm</h1>
-            <h1 class="sm:text-9xl text-7xl">
-         Moncef</h1>
+            <h1 class="sm:text-9xl text-primary-500 text-7xl font-semibold">
+         MONCEF</h1>
         <h2  class="sm:text-5xl text-4xl">
         Full-Stack Developer
         </h2>
+
+<section class="flex flex-col items-center justify-center mt-10 gap-6">
+    <p class="text-2xl">
+        want to see my skills ?
+    </p>
+    <button class="text-sm w-full flex-col justify-center items-center gap-2">
+           <p class="text-2xl w-full text-center">
+           Go down
+       </p>
+       <div class="flex justify-center items-center w-full animate-bounce mt-6">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" fill="rgb(185 143 68)" viewBox="0 0 256 256"><path d="M208,48l-80,80L48,48Z" opacity="0.2"></path><path d="M213.66,133.66l-80,80a8,8,0,0,1-11.32,0l-80-80a8,8,0,0,1,11.32-11.32L128,196.69l74.34-74.35a8,8,0,0,1,11.32,11.32Zm-171.32-80A8,8,0,0,1,48,40H208a8,8,0,0,1,5.66,13.66l-80,80a8,8,0,0,1-11.32,0Zm25,2.34L128,116.69,188.69,56Z"></path></svg>    </button>
+
+
+</section>
     </main>
-    <section class="flex flex-col">
+    <!-- <section class="flex flex-col">
         <h2  class="sm:text-5xl text-4xl">
          Skilled in
         </h2>
@@ -55,5 +90,5 @@ import Skill from "./Skill.astro";
 
             {images.map(img=> <Skill img={img.filename} name={img.name}/> )}
         </section>
-    </section>
+    </section> -->
 </main>

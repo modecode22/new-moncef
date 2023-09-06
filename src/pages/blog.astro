@@ -19,7 +19,7 @@ console.log(allBlogPosts);
 
 
 <Layout description="Moncef blog" title="Moncef Blog" transition:animate={"slide"}>
-   <main class="flex  gap-6 flex-wrap items-center justify-center">
+   <main class="flex  gap-12 flex-wrap items-center justify-center">
    {
         allBlogPosts.map((blog)=>{
             return <Card data={blog.data} slug={blog.slug}  /> 
