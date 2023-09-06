@@ -44,7 +44,7 @@ console.log(entry.data.img);
 
 <BlogLayout title={entry.data.title} description={entry.data.description} >
   <h1>{entry.data.title}</h1>
-  <img src={entry.data.img} class="aspect-video" alt="this is an image ">
-  <h5>{remarkPluginFrontmatter.minutesRead}</h5>
+  <img transition:name={entry.slug} src={entry.data.img} class="aspect-video py-2 m-0 " alt="this is an image ">
+  <h5 class="pb-6">{remarkPluginFrontmatter.minutesRead}</h5>
   <Content />
 </BlogLayout>

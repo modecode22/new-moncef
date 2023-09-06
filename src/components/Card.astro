@@ -1,20 +1,39 @@
 ---
 import { Image } from 'astro:assets';
-import Layout from '../layouts/Layout.astro';
-
+import { howManyDaysAgo } from '../lib/utils'
 type Props = {
-    title:string
-    img: string 
-    description:string
-    author:string
-    date:string
+    data: {
+        title: string;
+        description: string;
+        author: string;
+        date: string;
+        img: string;
+    }
+    slug:string
 }
-const { author, description,img,title,date } = Astro.props;
+const { data:{author,date,description,img,title},slug } = Astro.props;
+const before = howManyDaysAgo(date.toString())
 ---
 
 
     
-    <section id="card" class={` overflow-hidden w-[320px] bg-white shadow-sm aspect-[7/10] `}>
-        <Image width={320} height={200}  class="rounded-none"  src={img} alt="A bird sitting on a nest of eggs."/>
-        
+    <section id="card" class={`border border-primary-300/50 dark:border-primary-950  overflow-hidden w-[360px] dark:bg-dark-800 bg-white rounded-xl shadow-sm  flex-col flex justify-between `}>
+    <section class="flex flex-col h-full justify-between pt-6">
+<section class="flex flex-col gap-4" >
+
+    <a href={`/blog/${slug}`} class="m-0 px-5 text-4xl line-clamp-2 font-bold text-primary-500" >{title}</a>
+    <p class=" px-5 line-clamp-5    font-serif text-base dark:text-dark-50 text-light-700 font-light" >{description}</p>
+</section>
+ 
+        <h5 class="m-0 px-5  p-4  text-primary-500 font-bold " >
+            <strong class="font-serif text-sm dark:text-dark-100 text-light-500 font-light ">{`Writen By `}</strong>
+{author}
+        </h5>
+    </section>
+
+    
+    <section class="flex flex-col" >
+        <Image transition:name={slug} width={360} height={200}  class="rounded-none p-0 m-0"  src={img} alt="A bird sitting on a nest of eggs."/>
+           <h6 class="m-0 px-5  p-4 font-serif text-sm dark:text-dark-100 text-light-500 font-light" >{before}</h6>
+    </section>
     </section>

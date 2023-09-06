@@ -9,7 +9,6 @@ import { getCollection, getEntry } from 'astro:content';
 // Example: retrieve `src/content/blog/**`
 const allBlogPosts = await getCollection('blogs');
 console.log(allBlogPosts);
-const { Content, headings } = await allBlogPosts[0].render();
 
 // Get a single entry from a collection.
 // Requires the name of the collection and either
@@ -20,8 +19,12 @@ const { Content, headings } = await allBlogPosts[0].render();
 
 
 <Layout description="Moncef blog" title="Moncef Blog" transition:animate={"slide"}>
-<Card author="" title="fsdf"  description="" img="https://uploadthing.com/f/1d44f1a9-3083-4a59-860b-d421161d5c4c_rainbow-vortex.svg" date=""   /> 
+   <main class="flex  gap-6 flex-wrap items-center justify-center">
+   {
+        allBlogPosts.map((blog)=>{
+            return <Card data={blog.data} slug={blog.slug}  /> 
+        })
+    }
 
-<Content />
-
+   </main>
 </Layout>
