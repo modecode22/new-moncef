@@ -1,0 +1,49 @@
+---
+import Skill from "./Skill.astro";
+ const images = [
+    {filename:"typescript.svg",name:"typescript"},
+    {filename:"nextjs.svg",name:"next js"},
+    {filename:"react.svg",name:"react"},
+    {filename:"astrojs.svg",name:"astro js"},
+    {filename:"tauri.svg",name:"tauri"},
+    {filename:"electronjs.svg",name:"electron js"},
+    {filename:"tailwindcss.svg",name:"tailwind css"},
+    {filename:"reactrouter.svg",name:"react router"},
+    {filename:"reduxtoolkit.svg",name:"redux toolkit"},
+    {filename:"reactquery.svg",name:"react query"},
+    {filename:"swr.svg",name:"swr"},
+    {filename:"prisma.svg",name:"prisma"},
+    {filename:"zodlogo.svg",name:"zod"},
+    {filename:"langchain.png",name:"langchain"},
+    {filename:"nextauth.webp",name:"next auth"},
+    {filename:"auth0.svg",name:"auth0"},
+    {filename:"nodejs.svg",name:"node js"},
+    {filename:"deno.svg",name:"deno"},
+    {filename:"jwt.svg",name:"jwt"},
+    {filename:"expressjs.svg",name:"express js"},
+    {filename:"nestjs.svg",name:"nest js"},
+    {filename:"sanity.svg",name:"sanity"},
+    {filename:"supabase.svg",name:"supabase"},
+    {filename:"firebase.svg",name:"firebase"},
+    {filename:"mongodb.svg",name:"mongodb"},
+    {filename:"postgressql.svg",name:"postgressql"},
+    {filename:"mysql.svg",name:"mysql"},
+    {filename:"sqlite.svg",name:"sqlite"},
+  ];
+
+---
+
+
+
+
+<section class="h-screen w-full flex justify-center items-center">
+    <section class="flex flex-col">
+        <h2  class="sm:text-5xl text-4xl">
+         Skilled in
+        </h2>
+        <section class="flex mt-2 flex-wrap gap-2">
+
+            {images.map(img=> <Skill img={img.filename} name={img.name}/> )}
+        </section>
+    </section>
+</section>
