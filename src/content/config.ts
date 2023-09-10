@@ -12,6 +12,21 @@ const blogCollection = defineCollection({
   }),
 });
 
+// write a node runtime  
+
+
+
+const projects = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    date: z.string(),
+    img: z.string(),
+    link: z.string()
+  }),
+});
+
 const authors = defineCollection({
   type: "data",
   schema: z.object({
@@ -22,4 +37,6 @@ name: z.string()
 export const collections = {
   blogs: blogCollection,
   authors: authors,
+  projects: projects,
 };
+
