@@ -11,17 +11,31 @@ type Props = {
     slug: string;
 }
 
-const { data:{date,description,img,title,link},slug } = Astro.props;
+const { data:{date,description,img,title,link,tech},slug } = Astro.props;
 ---
 
 
 
-<section class=" group relative w-[330px] h-[440px] rounded-xl dark:bg-dark-950 ">
+<section class=" bg-white group relative w-[330px] h-[440px] rounded-xl dark:bg-dark-950 ">
 <section class="p-4 flex justify-between items-center">
     <h3 class="">{title}</h3>
 <section>
     {date}
 </section>
 </section>
-<img src={img} alt="">
+<img transition:name={title} src={img} alt={title}>
+<section class="flex-1 flex flex-col p-4 gap-2 justify-between">
+    <p class="line-clamp-2">{description}</p>
+    <p class="line-clamp-2 text-sm">
+        Built with : {tech}
+    </p>
+    <section class="flex gap-4">
+        <a class="bg-primary-500 text-dark-950 rounded-xl px-2 p-1" target="_blank" href={link} >
+           website
+        </a>
+                <a href={`/projects/${slug}`} class=" text-light-900  rounded-xl px-2 p-1">
+           read more
+        </a>
+    </section>
+</section>
 </section>
