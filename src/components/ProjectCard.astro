@@ -1,0 +1,27 @@
+---
+type Props = {
+    data: {
+        title: string;
+        description: string;
+        date: string;
+        img: string;
+        link: string;
+        tech:string
+    }
+    slug: string;
+}
+
+const { data:{date,description,img,title,link},slug } = Astro.props;
+---
+
+
+
+<section class=" group relative w-[330px] h-[440px] rounded-xl dark:bg-dark-950 ">
+<section class="p-4 flex justify-between items-center">
+    <h3 class="">{title}</h3>
+<section>
+    {date}
+</section>
+</section>
+<img src={img} alt="">
+</section>
