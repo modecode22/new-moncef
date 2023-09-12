@@ -5,8 +5,8 @@ import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 import type { MarkdownHeading } from 'astro';
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blogs');
-  return blogEntries.map(entry => ({
+  const projectsEntries = await getCollection('projects');
+  return projectsEntries.map(entry => ({
     params: { slug: entry.slug }, props: { entry },
   }));
 }
@@ -16,13 +16,14 @@ type Props = {
     id: string;
     slug: string;
     body: string;
-    collection: "blogs";
+    collection: "projects";
     data: {
-        title: string;
+ title: string;
         description: string;
-        author: string;
         date: string;
         img: string;
+        link: string;
+        tech:string
     };
 } & {
     render(): Promise<{
@@ -41,10 +42,9 @@ console.log(entry.data.img);
 
 ---
 
-
 <BlogLayout title={entry.data.title} description={entry.data.description} >
   <h1>{entry.data.title}</h1>
-  <img transition:name={entry.slug} src={entry.data.img} class="aspect-video py-2 m-0 " alt="this is an image ">
+  <img transition:name={entry.slug} src={entry.data.img} class=" py-2 m-0 " alt="this is an image ">
   <h5 class="pb-6">{remarkPluginFrontmatter.minutesRead}</h5>
   <Content />
 </BlogLayout>
