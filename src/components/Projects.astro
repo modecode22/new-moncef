@@ -1,11 +1,23 @@
 ---
+import { getCollection, getEntry } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+const allProjects = await getCollection('projects');
+
 ---
 
 
 
 
-<section class="h-screen w-full flex justify-center items-center">
+<section class="min-h-screen w-full flex flex-col justify-center items-center">
 
+
+  <main>
+   {
+        allProjects.map((project)=>{
+            return <ProjectCard data={project.data} slug={project.slug}  /> 
+        })
+    }
+  </main>
 
     <section class="flex flex-col items-center justify-center mt-10 gap-6">
         <p class="text-2xl w-full text-center">
