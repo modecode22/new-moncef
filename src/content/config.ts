@@ -23,10 +23,10 @@ const projects = defineCollection({
     description: z.string(),
     date: z.string(),
     img: z.string(),
-    link: z.string()
+    link: z.string(),
+        tech: z.string()
   }),
 });
-
 const authors = defineCollection({
   type: "data",
   schema: z.object({
