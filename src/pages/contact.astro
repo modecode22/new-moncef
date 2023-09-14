@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const formData = new FormData(form);
 
   // '/sendEmail' should be replaced by your actual server-side script URL
-  fetch('http://localhost:3000/contact/send-email', {
+  fetch(`${PUBLIC_API_URL}/contact/send-email`, {
     method: 'POST',
     body: formData,
   })
