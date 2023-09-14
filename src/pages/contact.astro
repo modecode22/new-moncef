@@ -1,6 +1,6 @@
 ---
 import { z } from "astro:content";
-import { serverUrl } from "../utils/utils";
+import { sendEmail } from "../utils/utils";
 import { formDataSchema } from "../utils/validation";
 import Layout from "../layouts/Layout.astro";
 
@@ -16,21 +16,8 @@ if (Astro.request.method === "POST") {
       email: email,
       message: message
     });
-   fetch(`${serverUrl}/contact/send-email`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',  // Send as JSON
-      },
-      body: JSON.stringify(formData),  // Convert to JSON string
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        console.error("Email sent successfully :)");
-      } else {
-        console.error("Failed to send email: " + data.error);
-      }
-    })
+ 
+    await sendEmail(formData)   
     .catch(error => {
       console.error("An error occurred: " + error);
     });
