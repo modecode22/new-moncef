@@ -1,7 +1,10 @@
 import * as nodemailer from "nodemailer";
 const MY_EMAIL = import.meta.env.MY_EMAIL;
 const MY_PASSWORD = import.meta.env.MY_PASSWORD;
-export const serverUrl = import.meta.env.PUBLIC_API_URL;
+
+
+
+
 export const sendEmail = async (
 {name, email,message}: { name: string,
   email: string,
