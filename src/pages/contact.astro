@@ -3,24 +3,100 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout description='Full-stack dev.' title="Moncef.">
-    <section class="text-5xl pb-6 dark:text-primary-50 text-dark-900">
-Contact me
-    </section>
-      <main  transition:name="contact" class="  flex-1 bg-primary-500 w-full h-full rounded-xl  p-6">
-        <form method="POST" class="flex flex-col w-full gap-4">
-      <div class="flex flex-col sm:flex-row justify-center items-center w-full gap-4">
-        <input class="w-full rounded-lg h-12 px-2 bg-primary-600 placeholder:text-light-100 " type="text" name="name" placeholder="Name" />
-            <input type="email" class="w-full rounded-lg h-12 px-2 bg-primary-600 placeholder:text-light-100" name="email" placeholder="Email" />
-        </div>
-      </div>
-      <div>
-        <textarea class="w-full rounded-lg h-36 resize-y px-2 bg-primary-600 placeholder:text-light-100" name="message" placeholder="Message"></textarea>
-      </div>
-      <div>
-        <button  class="h-12 w-full rounded-xl bg-light-50 dark:bg-dark-900 dark:text-light-50 text-dark-900" type="submit">Send</button>
-      </div>
-    </form>
-    </main>          
+<section class="text-5xl pb-6 dark:text-primary-50 text-dark-900">
+  Contact me
+</section>
+<main transition:name="contact" class="text-primary-50 flex-1 bg-primary-500 w-full h-full rounded-xl p-6">
+  <form id="contactForm" method="POST" class="flex flex-col w-full gap-4">
+  <div id="nameDiv" class="flex flex-col">
+    <input id="name" class="w-full rounded-lg h-12 px-2 bg-primary-600 placeholder:text-light-100" type="text" name="name" placeholder="Name" />
+    <span id="nameError" class="text-red-500"></span>
+  </div>
+  <div id="emailDiv" class="flex flex-col">
+    <input id="email" type="email" class="w-full rounded-lg h-12 px-2 bg-primary-600 placeholder:text-light-100" name="email" placeholder="Email" />
+    <span id="emailError" class="text-red-500"></span>
+  </div>
+  <div id="messageDiv" class="flex flex-col">
+    <textarea id="message" class="w-full rounded-lg h-36 resize-y px-2 bg-primary-600 placeholder:text-light-100" name="message" placeholder="Message"></textarea>
+    <span id="messageError" class="text-red-500"></span>
+  </div>
+  <button id="submitButton" class="h-12 w-full rounded-xl bg-light-50 dark:bg-dark-900 dark:text-light-50 text-dark-900" type="submit">Send</button>
+</form>
+
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contactForm");
+  
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    clearErrors();
+
+    let valid = true;
+
+    // Validate name
+    const name = document.getElementById("name").value;
+    if (!name) {
+      setError("nameError", "Name is required.");
+      valid = false;
+    }
+
+    // Validate email
+    const email = document.getElementById("email").value;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!email) {
+      setError("emailError", "Email is required.");
+      valid = false;
+    } else if (!emailPattern.test(email)) {
+      setError("emailError", "Invalid email format.");
+      valid = false;
+    }
+
+    // Validate message
+    const message = document.getElementById("message").value;
+    if (!message) {
+      setError("messageError", "Message is required.");
+      valid = false;
+    }
+
+    if (valid) {
+      const formData = new FormData(form);
+
+  // '/sendEmail' should be replaced by your actual server-side script URL
+  fetch('http://localhost:3000/contact/send-email', {
+    method: 'POST',
+    body: formData,
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      alert("Email sent successfully");
+    } else {
+      alert("Failed to send email: " + data.error);
+    }
+  })
+  .catch(error => {
+    alert("An error occurred: " + error.message);
+  });
+    }
+  });
+
+  function setError(fieldId, message) {
+    const errorElement = document.getElementById(fieldId);
+    errorElement.textContent = message;
+  }
+
+  function clearErrors() {
+    ["nameError", "emailError", "messageError"].forEach(field => {
+      const errorElement = document.getElementById(field);
+      errorElement.textContent = "";
+    });
+  }
+});
+
+</script>
+
 
 
 </Layout>
