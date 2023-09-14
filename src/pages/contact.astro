@@ -62,9 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (valid) {
       const formData = new FormData(form);
-
+const url = import.meta.env.PUBLIC_API_URL
   // '/sendEmail' should be replaced by your actual server-side script URL
-  fetch(`${PUBLIC_API_URL}/contact/send-email`, {
+  fetch(`${url}/contact/send-email`, {
     method: 'POST',
     body: formData,
   })
