@@ -1,102 +1,72 @@
 ---
+import { z } from "astro:content";
+import { serverUrl } from "../utils/utils";
+import { formDataSchema } from "../utils/validation";
 import Layout from "../layouts/Layout.astro";
+
+const errors = { name: "", email: "", message: "" };
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const name = data.get("name");
+    const email = data.get("email");
+    const message = data.get("message");
+    const formData = formDataSchema.parse({
+      name: name,
+      email: email,
+      message: message
+    });
+   fetch(`${serverUrl}/contact/send-email`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',  // Send as JSON
+      },
+      body: JSON.stringify(formData),  // Convert to JSON string
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        console.error("Email sent successfully :)");
+      } else {
+        console.error("Failed to send email: " + data.error);
+      }
+    })
+    .catch(error => {
+      console.error("An error occurred: " + error);
+    });
+  } catch (error) {
+  if (error instanceof z.ZodError) {
+      // Validation error
+      console.error("Validation error: " + error);
+    } else {
+      console.error("An error occurred: " + error);
+    }
+  }
+}
 ---
 
 <Layout description='Full-stack dev.' title="Moncef.">
+
 <section class="text-5xl pb-6 dark:text-primary-50 text-dark-900">
   Contact me
-</section>
+</section> 
 <main transition:name="contact" class="text-primary-50 flex-1 bg-primary-500 w-full h-full rounded-xl p-6">
-  <form id="contactForm" method="POST" class="flex flex-col w-full gap-4">
-  <div id="nameDiv" class="flex flex-col">
-    <input id="name" class="w-full rounded-lg h-12 px-2 bg-primary-600 placeholder:text-light-100" type="text" name="name" placeholder="Name" />
-    <span id="nameError" class="text-red-500"></span>
-  </div>
-  <div id="emailDiv" class="flex flex-col">
-    <input id="email" type="email" class="w-full rounded-lg h-12 px-2 bg-primary-600 placeholder:text-light-100" name="email" placeholder="Email" />
-    <span id="emailError" class="text-red-500"></span>
-  </div>
-  <div id="messageDiv" class="flex flex-col">
-    <textarea id="message" class="w-full rounded-lg h-36 resize-y px-2 bg-primary-600 placeholder:text-light-100" name="message" placeholder="Message"></textarea>
-    <span id="messageError" class="text-red-500"></span>
-  </div>
-  <button id="submitButton" class="h-12 w-full rounded-xl bg-light-50 dark:bg-dark-900 dark:text-light-50 text-dark-900" type="submit">Send</button>
-</form>
 
+ <form method="POST" class="flex flex-col w-full gap-4">
+      <input type="text" name="name" class="w-full rounded-lg h-12 px-2 bg-primary-600 placeholder:text-light-100" placeholder="Name"  />
+    {errors.name && <p>{errors.name}</p>}
+      <input type="email" name="email"  class="w-full rounded-lg h-12 px-2 bg-primary-600 placeholder:text-light-100" placeholder="email" required />
+    {errors.email && <p>{errors.email}</p>}
+    <label>
+      <textarea  name="message" required minlength="6" class="w-full rounded-lg h-36 resize-y px-2 bg-primary-600 placeholder:text-light-100" name="message" placeholder="Message" />
+    </label>
+    {errors.message && <p>{errors.message}</p>}
+    <button class="h-12 w-full rounded-xl bg-light-50 dark:bg-dark-900 dark:text-light-50 text-dark-900" >Register</button>
+  </form>
 </main>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("contactForm");
-  
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    clearErrors();
-
-    let valid = true;
-
-    // Validate name
-    const name = document.getElementById("name").value;
-    if (!name) {
-      setError("nameError", "Name is required.");
-      valid = false;
-    }
-
-    // Validate email
-    const email = document.getElementById("email").value;
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!email) {
-      setError("emailError", "Email is required.");
-      valid = false;
-    } else if (!emailPattern.test(email)) {
-      setError("emailError", "Invalid email format.");
-      valid = false;
-    }
-
-    // Validate message
-    const message = document.getElementById("message").value;
-    if (!message) {
-      setError("messageError", "Message is required.");
-      valid = false;
-    }
-
-    if (valid) {
-      const formData = new FormData(form);
-const url = import.meta.env.PUBLIC_API_URL
-  // '/sendEmail' should be replaced by your actual server-side script URL
-  fetch(`${url}/contact/send-email`, {
-    method: 'POST',
-    body: formData,
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (data.success) {
-      alert("Email sent successfully :)");
-    } else {
-      alert("Failed to send email: " + data.error);
-    }
-  })
-  .catch(error => {
-    alert("An error occurred: " + error.message);
-  });
-    }
-  });
-
-  function setError(fieldId, message) {
-    const errorElement = document.getElementById(fieldId);
-    errorElement.textContent = message;
-  }
-
-  function clearErrors() {
-    ["nameError", "emailError", "messageError"].forEach(field => {
-      const errorElement = document.getElementById(field);
-      errorElement.textContent = "";
-    });
-  }
-});
-
-</script>
-
 
 
 </Layout>
+
+
+
