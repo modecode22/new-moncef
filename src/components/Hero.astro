@@ -31,17 +31,13 @@ interface Snowflake {
   speedX: number;
   speedY: number;
   hue: number;
-  angle: number;
-  spin: number;
-  opacity: number;
-  opacityChange: number;
+  fractalDepth: number;
 }
 
 const canvas = document.getElementById("particleCanvas") as HTMLCanvasElement;
 const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
-
+let mouseX = 0, mouseY = 0;
 let snowflakes: Snowflake[] = [];
-let windSpeed = 0;
 
 function resizeCanvas(): void {
   canvas.width = window.innerWidth;
@@ -51,59 +47,69 @@ function resizeCanvas(): void {
 
 function createSnowflakes(): void {
   snowflakes = [];
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 300; i++) {
     snowflakes.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      radius: Math.random() * 4 + 1,
-      speedX: Math.random() * 0.5 - 0.25,
-      speedY: Math.random() * 1 + 0.5,
+      radius: Math.random() * 10 + 5,
+      speedX: Math.random() * 0.4 - 0.2,
+      speedY: Math.random() * 0.4 + 0.1,
       hue: Math.random() * 20 + 120,
-      angle: Math.random() * 360,
-      spin: Math.random() * 0.1 - 0.05,
-      opacity: Math.random(),
-      opacityChange: Math.random() * 0.005 - 0.0025
+      fractalDepth: 0
     });
   }
 }
 
+function drawFractal(x: number, y: number, sides: number, length: number, depth: number, hue: number): void {
+  if (depth === 0) return;
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  for (let i = 0; i <= sides; i++) {
+    x += length * Math.cos(i * 2 * Math.PI / sides);
+    y += length * Math.sin(i * 2 * Math.PI / sides);
+    ctx.lineTo(x, y);
+    drawFractal(x, y, sides, length * 0.5, depth - 1, hue);
+  }
+  ctx.fillStyle = `hsla(${hue}, 20%, 45%, 0.1)`;
+  ctx.fill();
+}
+
 function animateSnowflakes(): void {
-  // Clear for a transparent background
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  snowflakes.forEach((s: Snowflake) => {
-    ctx.beginPath();
-    ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-    ctx.fillStyle = `hsla(${s.hue}, 20%, 45%, ${s.opacity})`;
-    ctx.fill();
-
-    // Update snowflake properties
-    s.x += s.speedX + windSpeed; // Apply wind speed
-    s.y += s.speedY * s.radius / 5; // Falling speed varies with size
-    s.angle += s.spin;
-    s.opacity += s.opacityChange;
-    s.hue += 0.1;
-
-    // Boundary checks
-    if (s.y > canvas.height) {
-      s.y = 0;
-      s.x = Math.random() * canvas.width;
+  snowflakes.forEach((s) => {
+    const dx = s.x - mouseX;
+    const dy = s.y - mouseY;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    
+    if (distance < 50) {
+      s.fractalDepth = Math.min(s.fractalDepth + 0.1, 4);
+    } else {
+      s.fractalDepth = Math.max(s.fractalDepth - 0.1, 0);
     }
-    if (s.opacity > 1 || s.opacity < 0) {
-      s.opacityChange *= -1;
-    }
+
+    drawFractal(s.x, s.y, 6, s.radius, Math.round(s.fractalDepth), s.hue);
+
+    s.x += s.speedX;
+    s.y += s.speedY;
+
+    if (s.x > canvas.width || s.x < 0) s.speedX *= -1;
+    if (s.y > canvas.height || s.y < 0) s.speedY *= -1;
   });
-
-  // Gentle wind oscillation
-  windSpeed = 0.5 * Math.sin(Date.now() * 0.0005);
 
   requestAnimationFrame(animateSnowflakes);
 }
 
-window.addEventListener("resize", resizeCanvas);
-resizeCanvas();
-animateSnowflakes();
+canvas.addEventListener("mousemove", (event) => {
+  mouseX = event.clientX;
+  mouseY = event.clientY;
+});
 
+window.addEventListener("resize", resizeCanvas);
+
+resizeCanvas();
+createSnowflakes();
+animateSnowflakes();
 
 </script>
 <main class="py-6 w-full h-[80vh]   flex flex-col  items-center relative">
