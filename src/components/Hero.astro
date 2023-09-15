@@ -23,9 +23,94 @@
 <!-- <div class="hidden dark:absolute inset-0 backdrop-blur-xl  h-screen w-full  -z-20 dark:flex justify-center items-center">
     <img src="./des.svg" class=" back    " alt="">
 </div> -->
+<script>
+interface Snowflake {
+  x: number;
+  y: number;
+  radius: number;
+  speedX: number;
+  speedY: number;
+  hue: number;
+  angle: number;
+  spin: number;
+  opacity: number;
+  opacityChange: number;
+}
 
+const canvas = document.getElementById("particleCanvas") as HTMLCanvasElement;
+const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+
+let snowflakes: Snowflake[] = [];
+let windSpeed = 0;
+
+function resizeCanvas(): void {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  createSnowflakes();
+}
+
+function createSnowflakes(): void {
+  snowflakes = [];
+  for (let i = 0; i < 30; i++) {
+    snowflakes.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 4 + 1,
+      speedX: Math.random() * 0.5 - 0.25,
+      speedY: Math.random() * 1 + 0.5,
+      hue: Math.random() * 20 + 120,
+      angle: Math.random() * 360,
+      spin: Math.random() * 0.1 - 0.05,
+      opacity: Math.random(),
+      opacityChange: Math.random() * 0.005 - 0.0025
+    });
+  }
+}
+
+function animateSnowflakes(): void {
+  // Clear for a transparent background
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  snowflakes.forEach((s: Snowflake) => {
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+    ctx.fillStyle = `hsla(${s.hue}, 20%, 45%, ${s.opacity})`;
+    ctx.fill();
+
+    // Update snowflake properties
+    s.x += s.speedX + windSpeed; // Apply wind speed
+    s.y += s.speedY * s.radius / 5; // Falling speed varies with size
+    s.angle += s.spin;
+    s.opacity += s.opacityChange;
+    s.hue += 0.1;
+
+    // Boundary checks
+    if (s.y > canvas.height) {
+      s.y = 0;
+      s.x = Math.random() * canvas.width;
+    }
+    if (s.opacity > 1 || s.opacity < 0) {
+      s.opacityChange *= -1;
+    }
+  });
+
+  // Gentle wind oscillation
+  windSpeed = 0.5 * Math.sin(Date.now() * 0.0005);
+
+  requestAnimationFrame(animateSnowflakes);
+}
+
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+animateSnowflakes();
+
+
+</script>
 <main class="py-6 w-full h-[80vh]   flex flex-col  items-center relative">
-    <a href="/blog" class="absolute decoration-transparent bottom-0  right-0 p-2 px-6 rounded-lg dark:bg-dark-950 bg-white transition-all shadow-sm hover:shadow-md hover:shadow-white shadow-white dark:shadow-dark-950">
+    <canvas id="particleCanvas" class="w-full absolute inset-0 z-0"></canvas>
+
+  
+  <a href="/blog" class="absolute decoration-transparent bottom-0  right-0 p-2 px-6 rounded-lg dark:bg-dark-950 bg-white transition-all shadow-sm hover:shadow-md hover:shadow-white shadow-white dark:shadow-dark-950">
         Want to read my Blogs ?
     </a>
     <main class="  flex flex-col w-full items-center dark:text-primary-50 text-dark-900">
