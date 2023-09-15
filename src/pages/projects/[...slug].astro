@@ -47,10 +47,10 @@ console.log(entry.data.img);
 
 <BlogLayout title={entry.data.title} description={entry.data.description} >
   <h1 transition:name={entry.slug} >{entry.data.title}</h1>
-  <p>
+  <!-- <p>
     {entry.data.description}
-  </p>
+  </p> -->
   <!-- <h5 class="pb-6">{remarkPluginFrontmatter.minutesRead}</h5> -->
-  <img   src={entry.data.img} class="" alt="this is an image ">
+  <!-- <img   src={entry.data.img} class="" alt="this is an image "> -->
   <Content />
 </BlogLayout>
