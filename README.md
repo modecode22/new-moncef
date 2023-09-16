@@ -1,54 +1,55 @@
-# Astro Starter Kit: Basics
+# Portfolio & Blog
+
+A portfolio and blog built with Astro v3, TypeScript, Tailwind CSS, and MDX.
+
+## Project Structure
 
 ```
-npm create astro@latest -- --template basics
+├───public
+│ ├───fonts # Custom fonts
+│ ├───patterns # Background patterns
+│ ├───skills # Skills section assets
+│ └───social # Social icons
+└───src
+├───components # Reusable components
+├───content
+│ ├───authors # Author information
+│ ├───blogs # Blog content in MDX
+│ └───projects # Project information
+├───layouts # Layout components
+├───lib # Helper functions
+├───pages # Pages
+│ ├───blog
+│ └───projects
+├───types # TypeScript types
+└───utils # Utility functions
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Getting Started
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+1. Clone the repo
+    ```sh
+    git clone https://github.com/modecode22/new-moncef.git
+    cd new-moncef
+    ```
 
-## 🚀 Project Structure
+2. Install dependencies
+    ```sh
+    pnpm install
+    ```
 
-Inside of your Astro project, you'll see the following folders and files:
+3. Setup environment variables
+    - Create a `.env` file in the root directory.
+    - Fill in your credentials:
+    ```makefile
+    MY_EMAIL=yourappemail@gmail.com
+    MY_PASSWORD=yourapppassword
+    ```
 
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+    > See [this](https://support.google.com/mail/answer/185833?hl=en) for generating app passwords.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+4. Run the app
+    ```sh
+    pnpm dev
+    ```
