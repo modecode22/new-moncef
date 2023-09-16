@@ -36,7 +36,7 @@ A portfolio and blog built with Astro v3, TypeScript, Tailwind CSS, and MDX.
 
 2. Install dependencies
     ```sh
-    pnpm install
+    yarn install
     ```
 
 3. Setup environment variables
@@ -51,5 +51,5 @@ A portfolio and blog built with Astro v3, TypeScript, Tailwind CSS, and MDX.
 
 4. Run the app
     ```sh
-    pnpm dev
+    yarn dev
     ```
