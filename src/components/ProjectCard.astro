@@ -45,7 +45,7 @@ const { data:{date,description,color,title,link,tech},slug } = Astro.props;
             <a id={`go to ${title} website click here `} title={`go to ${title} website click here `} class="font-sans bg-primary-500 font-medium text-dark-950 rounded-xl sm:px-2 sm:p-1 p-2 px-4" target="_blank" href={link} >
                Website
             </a>
-                    <a href={`/projects/${slug}`} title={`go to the ${title} page click here`} id={`go to the ${title} page click here`} class="font-sans font-medium text-light-900  rounded-xl sm:px-2 sm:p-1 p-2 px-4">
+            <a href={`/projects/${slug}`} title={`go to the ${title} page click here`} id={`go to the ${title} page click here`} class="font-sans font-medium text-light-900  rounded-xl sm:px-2 sm:p-1 p-2 px-4">
                Project details
             </a>
         </section>
