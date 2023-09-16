@@ -27,7 +27,7 @@ const { data:{date,description,img,title,link,tech},slug } = Astro.props;
 
     <!-- <img transition:name={slug} src={img} alt={title}> -->
 <section class=" bg-white dark:bg-dark-800 flex flex-col  p-4  justify-between flex-1  w-full rounded-xl">
-      <a transition:name={slug} href={`/projects/${slug}`} class="sm:text-4xl text-5xl text-primary-500">{title}</a>
+      <a transition:name={slug} href={`/projects/${slug}`} title={`go to the ${title} page `} id={`go to the ${title} page `} class="sm:text-4xl text-5xl text-primary-500">{title}</a>
     <p class="line-clamp-2 sm:text-base text-xl">{description}</p>
     <p class="line-clamp-2 sm:text-base text-xl ">
         Built with : <strong class="text-primary-400">
@@ -38,10 +38,10 @@ const { data:{date,description,img,title,link,tech},slug } = Astro.props;
     <div 
  class="flex items-baseline justify-between bg-white dark:bg-dark-800">
         <section class="flex gap-2 pt-4 ">
-            <a class="font-sans bg-primary-500 font-medium text-dark-950 rounded-xl sm:px-2 sm:p-1 p-2 px-4" target="_blank" href={link} >
+            <a id={`go to ${title} website `} title={`go to ${title} website `} class="font-sans bg-primary-500 font-medium text-dark-950 rounded-xl sm:px-2 sm:p-1 p-2 px-4" target="_blank" href={link} >
                website
             </a>
-                    <a href={`/projects/${slug}`} class="font-sans font-medium text-light-900  rounded-xl sm:px-2 sm:p-1 p-2 px-4">
+                    <a href={`/projects/${slug}`} title={`go to the ${title} page `} id={`go to the ${title} page `} class="font-sans font-medium text-light-900  rounded-xl sm:px-2 sm:p-1 p-2 px-4">
                read more
             </a>
         </section>

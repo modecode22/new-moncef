@@ -20,7 +20,7 @@ const before = howManyDaysAgo(date.toString())
     <section class="flex flex-col h-full justify-between pt-6">
 <section class="flex flex-col gap-4" >
 
-    <a transition:name={slug} href={`/blog/${slug}`} class="m-0 px-5 text-4xl line-clamp-2 font-bold text-primary-500" >{title}</a>
+    <a transition:name={slug} href={`/blog/${slug}`} id={`link to ${title}`} title={`link to ${title}`} class="m-0 px-5 text-4xl line-clamp-2 font-bold text-primary-500" >{title}</a>
     <p class=" px-5 line-clamp-5    font-serif text-base dark:text-dark-50 text-light-700 font-light" >{description}</p>
 </section>
  
