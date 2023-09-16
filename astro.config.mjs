@@ -4,6 +4,8 @@ import { remarkReadingTime } from './src/utils/remark-reading-time.mjs';
 import mdx from "@astrojs/mdx";
 import vercel from "@astrojs/vercel/serverless";
 
+import sitemap from "@astrojs/sitemap";
+
 // https://astro.build/config
 export default defineConfig({
   output: "server",
@@ -15,5 +17,6 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [remarkReadingTime],
   },
-  integrations: [tailwind(), mdx()],
+  site: "https://moncef.online",
+  integrations: [tailwind(), mdx(), sitemap()],
 });

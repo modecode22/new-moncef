@@ -2,6 +2,7 @@
   "name": "new-moncef",
   "type": "module",
   "version": "0.0.1",
+  "license": "MIT",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -14,6 +15,7 @@
     "@astrojs/mdx": "^1.0.0",
     "@astrojs/node": "^6.0.0",
     "@astrojs/react": "^3.0.0",
+    "@astrojs/sitemap": "^3.0.0",
     "@astrojs/tailwind": "^5.0.0",
     "@astrojs/vercel": "^5.0.0",
     "@types/react": "^18.0.21",

@@ -1,0 +1,59 @@
+---
+import { z } from "astro:content";
+import { sendEmail } from "../lib/utils";
+import { formDataSchema } from "../lib/validation";
+import Layout from "../layouts/Layout.astro";
+
+const errors = { name: "", email: "", message: "" };
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const name = data.get("name");
+    const email = data.get("email");
+    const message = data.get("message");
+    const formData = formDataSchema.parse({
+      name: name,
+      email: email,
+      message: message
+    });
+ 
+    await sendEmail(formData)   
+    .catch(error => {
+      console.error("An error occurred: " + error);
+    });
+  } catch (error) {
+  if (error instanceof z.ZodError) {
+      // Validation error
+      console.error("Validation error: " + error);
+    } else {
+      console.error("An error occurred: " + error);
+    }
+  }
+}
+---
+
+<Layout description='Full-stack dev.' title="Moncef.">
+
+<section class="text-5xl pb-6 dark:text-primary-50 text-dark-900">
+  Contact me
+</section> 
+<main transition:name="contact" class="text-primary-50 flex-1 bg-primary-500 w-full h-full rounded-xl p-6">
+
+ <form method="POST" class="flex flex-col w-full gap-4">
+      <input type="text" name="name" class="w-full rounded-lg h-12 px-2 bg-primary-600 placeholder:text-light-100" placeholder="Name"  />
+    {errors.name && <p>{errors.name}</p>}
+      <input type="email" name="email"  class="w-full rounded-lg h-12 px-2 bg-primary-600 placeholder:text-light-100" placeholder="email" required />
+    {errors.email && <p>{errors.email}</p>}
+    <label>
+      <textarea  name="message" required minlength="6" class="w-full rounded-lg h-36 resize-y px-2 bg-primary-600 placeholder:text-light-100" name="message" placeholder="Message" />
+    </label>
+    {errors.message && <p>{errors.message}</p>}
+    <button name="submit button" title="submit button" class="h-12 w-full rounded-xl bg-light-50 dark:bg-dark-900 dark:text-light-50 text-dark-900" >Register</button>
+  </form>
+</main>
+
+
+</Layout>
+
+
+
