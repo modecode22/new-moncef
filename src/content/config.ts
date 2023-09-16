@@ -11,11 +11,6 @@ const blogCollection = defineCollection({
     img:z.string()
   }),
 });
-
-// write a node runtime  
-
-
-
 const projects = defineCollection({
   type: "content",
   schema: z.object({
