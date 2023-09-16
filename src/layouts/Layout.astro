@@ -19,7 +19,10 @@ const { title,description } = Astro.props;
     <meta name="description" content={description} />
 		<title>{title}</title>
 		<ViewTransitions />
-    
+    <script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
 	</head>
   
 	<body class=" bg-light-50 overflow-x-hidden min-h-screen flex flex-col justify-between transition-all w-full dark:bg-dark-900 text-light-950 dark:text-dark-50  ">
