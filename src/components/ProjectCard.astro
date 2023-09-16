@@ -6,12 +6,13 @@ type Props = {
         date: string;
         img: string;
         link: string;
-        tech:string
+        tech:string;
+        color:string;
     }
     slug: string;
 }
 
-const { data:{date,description,img,title,link,tech},slug } = Astro.props;
+const { data:{date,description,color,title,link,tech},slug } = Astro.props;
 ---
 
 <style>
@@ -22,8 +23,8 @@ const { data:{date,description,img,title,link,tech},slug } = Astro.props;
    }
    
 </style>
-
-<section style={`background:url("/patterns/${title.toLowerCase()}.svg")`}  class=" bg-white group relative w-full sm:h-[250px] h-[300px] rounded-xl dark:bg-dark-800  flex flex-col justify-between p-1 anime ">
+<!-- I need to finx thiat arter a while :) -->
+<section style={`background:"${color}"`}  class=" bg-white group relative w-full sm:h-[250px] h-[300px] rounded-xl dark:bg-dark-800  flex flex-col justify-between p-1 anime ">
 
     <!-- <img transition:name={slug} src={img} alt={title}> -->
 <section class=" bg-white dark:bg-dark-800 flex flex-col  p-4  justify-between flex-1  w-full rounded-xl">
@@ -42,10 +43,10 @@ const { data:{date,description,img,title,link,tech},slug } = Astro.props;
  class="flex items-baseline justify-between bg-white dark:bg-dark-800">
         <section class="flex gap-2 pt-4 ">
             <a id={`go to ${title} website click here `} title={`go to ${title} website click here `} class="font-sans bg-primary-500 font-medium text-dark-950 rounded-xl sm:px-2 sm:p-1 p-2 px-4" target="_blank" href={link} >
-               website
+               Website
             </a>
                     <a href={`/projects/${slug}`} title={`go to the ${title} page click here`} id={`go to the ${title} page click here`} class="font-sans font-medium text-light-900  rounded-xl sm:px-2 sm:p-1 p-2 px-4">
-               project details
+               Project details
             </a>
         </section>
 

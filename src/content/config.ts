@@ -19,7 +19,8 @@ const projects = defineCollection({
     date: z.string(),
     img: z.string(),
     link: z.string(),
-        tech: z.string()
+        tech: z.string(),
+        color: z.string(),
   }),
 });
 const authors = defineCollection({
