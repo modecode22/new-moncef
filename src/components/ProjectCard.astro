@@ -23,11 +23,14 @@ const { data:{date,description,img,title,link,tech},slug } = Astro.props;
    
 </style>
 
-<section style={`background:url("/patterns/${title.toLowerCase()}.svg")`}  class=" bg-white group relative w-full sm:h-[200px] h-[300px] rounded-xl dark:bg-dark-800  flex flex-col justify-between p-1 anime ">
+<section style={`background:url("/patterns/${title.toLowerCase()}.svg")`}  class=" bg-white group relative w-full sm:h-[250px] h-[300px] rounded-xl dark:bg-dark-800  flex flex-col justify-between p-1 anime ">
 
     <!-- <img transition:name={slug} src={img} alt={title}> -->
 <section class=" bg-white dark:bg-dark-800 flex flex-col  p-4  justify-between flex-1  w-full rounded-xl">
       <a transition:name={slug} href={`/projects/${slug}`} title={`go to the ${title} page click here`} id={`go to the ${title} page click here`} class="sm:text-4xl text-5xl text-primary-500">{title}</a>
+      <section>
+    finished in : {date}
+</section>
     <p class="line-clamp-2 sm:text-base text-xl">{description}</p>
     <p class="line-clamp-2 sm:text-base text-xl ">
         Built with : <strong class="text-primary-400">
@@ -42,12 +45,10 @@ const { data:{date,description,img,title,link,tech},slug } = Astro.props;
                website
             </a>
                     <a href={`/projects/${slug}`} title={`go to the ${title} page click here`} id={`go to the ${title} page click here`} class="font-sans font-medium text-light-900  rounded-xl sm:px-2 sm:p-1 p-2 px-4">
-               read more
+               project details
             </a>
         </section>
-<section>
-    {date}
-</section>
+
     </div>
 </section>
 </section>
