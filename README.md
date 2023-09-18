@@ -37,7 +37,7 @@ A portfolio and blog built with Astro v3, TypeScript, Tailwind CSS, and MDX.
 2. Install dependencies
 
     ```sh
-    yarn install
+    yarn 
     ```
 
 3. Setup environment variables
