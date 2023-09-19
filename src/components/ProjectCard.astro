@@ -29,11 +29,11 @@ const { data:{date,description,color,title,link,tech},slug } = Astro.props;
     <!-- <img transition:name={slug} src={img} alt={title}> -->
 <section class=" bg-white dark:bg-dark-800 flex flex-col  p-4  justify-between flex-1  w-full rounded-xl">
       <a transition:name={slug} href={`/projects/${slug}`} title={`go to the ${title} page click here`} id={`go to the ${title} page click here`} class="sm:text-4xl text-5xl text-primary-500">{title}</a>
-      <section>
+      <section class="font-bold">
     finished in : {date}
 </section>
-    <p class="line-clamp-2 sm:text-base text-xl">{description}</p>
-    <p class="line-clamp-2 sm:text-base text-xl ">
+    <p class="line-clamp-2  sm:text-base text-xl font-bold">{description}</p>
+    <p class="line-clamp-2  font-bold sm:text-base  ">
         Built with : <strong class="text-primary-400">
             {tech} 
         </strong> 
@@ -42,10 +42,10 @@ const { data:{date,description,color,title,link,tech},slug } = Astro.props;
     <div 
  class="flex items-baseline justify-between bg-white dark:bg-dark-800">
         <section class="flex gap-2 pt-4 ">
-            <a id={`go to ${title} website click here `} title={`go to ${title} website click here `} class="font-sans bg-primary-500 font-medium text-dark-950 rounded-xl sm:px-2 sm:p-1 p-2 px-4" target="_blank" href={link} >
+            <a id={`go to ${title} website click here `} title={`go to ${title} website click here `} class=" bg-primary-500 font-black text-dark-950 rounded-xl sm:px-2 sm:p-1 p-2 px-4" target="_blank" href={link} >
                Website
             </a>
-            <a href={`/projects/${slug}`} title={`go to the ${title} page click here`} id={`go to the ${title} page click here`} class="font-sans font-medium text-light-900  rounded-xl sm:px-2 sm:p-1 p-2 px-4">
+            <a href={`/projects/${slug}`} title={`go to the ${title} page click here`} id={`go to the ${title} page click here`} class="font-black text-light-900  rounded-xl sm:px-2 sm:p-1 p-2 px-4">
                Project details
             </a>
         </section>
