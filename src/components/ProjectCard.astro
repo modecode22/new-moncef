@@ -15,41 +15,29 @@ type Props = {
 const { data:{date,description,color,title,link,tech},slug } = Astro.props;
 ---
 
-<style>
-   /* background image scale and routate while hovering   */
-   .anime:hover{
-    background-size: 150%;
-    background-position-x: right;
-   }
-   
-</style>
-<!-- I need to finx thiat arter a while :) -->
-<section style={`background:"${color}"`}  class=" bg-white group relative w-full sm:h-[250px] h-[300px] rounded-xl dark:bg-dark-800  flex flex-col justify-between p-1 anime ">
-
-    <!-- <img transition:name={slug} src={img} alt={title}> -->
-<section class=" bg-white dark:bg-dark-800 flex flex-col  p-4  justify-between flex-1  w-full rounded-xl">
-      <a transition:name={slug} href={`/projects/${slug}`} title={`go to the ${title} page click here`} id={`go to the ${title} page click here`} class="sm:text-4xl text-5xl text-primary-500">{title}</a>
-      <section class="font-bold">
-    finished in : {date}
-</section>
-    <p class="line-clamp-2  sm:text-base text-xl font-bold">{description}</p>
-    <p class="line-clamp-2  font-bold sm:text-base  ">
-        Built with : <strong class="text-primary-400">
-            {tech} 
-        </strong> 
-    </p>
-
-    <div 
- class="flex items-baseline justify-between bg-white dark:bg-dark-800">
-        <section class="flex gap-2 pt-4 ">
-            <a id={`go to ${title} website click here `} title={`go to ${title} website click here `} class=" bg-primary-500 font-black text-dark-950 rounded-xl sm:px-2 sm:p-1 p-2 px-4" target="_blank" href={link} >
-               Website
-            </a>
-            <a href={`/projects/${slug}`} title={`go to the ${title} page click here`} id={`go to the ${title} page click here`} class="font-black text-light-900  rounded-xl sm:px-2 sm:p-1 p-2 px-4">
-               Project details
-            </a>
-        </section>
-
+<section id="card" class={` border-primary-300/50 h-56 dark:border-primary-950  overflow-hidden w-full dark:bg-dark-800 bg-white rounded-xl shadow-sm  flex-col flex justify-between  relative`}>
+    <div id="color" class="w-6 rotate-45 right-0 -bottom-16 h-full  absolute shadow-md " style={`background-color: ${color}; box-shadow: 5px 10px 20px ${color};`}>
     </div>
+    <section class="flex flex-col h-full justify-between pt-6">
+<section class="flex flex-col gap-4" >
+
+    <a transition:name={slug} href={`/projects/${slug}`} id={`link to ${title}`} title={`link to ${title}`} class="m-0 px-5 text-4xl line-clamp-2 font-bold " style={`color: ${color};`} >{title}</a>
+    <p class=" px-5 line-clamp-3   font-serif text-base dark:text-dark-50 text-light-700 font-bold" >{description}</p>
 </section>
-</section>
+ 
+
+    </section>
+
+    
+    <section class="flex items-center justify-between" >
+                <h5 class="m-0 px-5  p-4  text-primary-500 font-bold " >
+            <strong class="font-serif text-sm dark:text-dark-100 text-light-500 font-light ">{`Go to`}         <a  href={link} class="px-2 font-bold hover:underline underline-offset-2" target="_blank" id={`go to ${title} website click here `} title={`go to ${title} website click here `} style={`color: ${color};`} >{title}</a>
+                {`or`} <a  class="px-2 font-bold hover:underline underline-offset-2"  href={`/projects/${slug}`} title={`go to the ${title} page click here`} id={`go to the ${title} page click here`} style={`color: ${color}; opacity:50%;`} >Read more</a>
+            </strong>
+        </h5>
+        <!-- <Image  width={360} height={200}  class="rounded-none p-0 m-0"  src={img} alt="A bird sitting on a nest of eggs."/> -->
+           <h6 class="m-0 px-5  p-4 font-serif text-sm dark:text-dark-100 text-light-500 font-light" >{}</h6>
+    </section>
+    </section>
+
+ 
